@@ -8,13 +8,11 @@
 
 import java.util.Random;
 
-public class MarkovZero {
+public class MarkovZero extends AbstractMarkovModel {
     private String myText;
 	private Random myRandom;
 	
-	public MarkovZero() {
-		myRandom = new Random();
-	}
+	
 	
 	public void setRandom(int seed){
 		myRandom = new Random(seed);

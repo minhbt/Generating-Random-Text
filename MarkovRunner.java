@@ -10,30 +10,58 @@ import edu.duke.*;
 
 public class MarkovRunner {
     public void runMarkovZero() {
+        FileResource fr = new FileResource();
+        String st = fr.asString();
+        st = st.replace('\n', ' ');
+        MarkovZero markov = new MarkovZero();
+        markov.setRandom(88);
+        markov.setTraining(st);
+        for(int k=0; k < 3; k++){
+            String text = markov.getRandomText(101);
+            printOut(text);
+        }
+    }
+    
+    public void runMarkovOne() {
 		FileResource fr = new FileResource();
 		String st = fr.asString();
 		st = st.replace('\n', ' ');
-		MarkovZero markov = new MarkovZero();
+		MarkovOne markov = new MarkovOne();
+		markov.setRandom(273);
 		markov.setTraining(st);
 		for(int k=0; k < 3; k++){
-			String text = markov.getRandomText(500);
+			String text = markov.getRandomText(151);
 			printOut(text);
 		}
 	}
 	
-	private void printOut(String s){
-		String[] words = s.split("\\s+");
-		int psize = 0;
-		System.out.println("----------------------------------");
-		for(int k=0; k < words.length; k++){
-			System.out.print(words[k]+ " ");
-			psize += words[k].length() + 1;
-			if (psize > 60) {
-				System.out.println();
-				psize = 0;
-			}
+	public void runMarkovFour() {
+		FileResource fr = new FileResource();
+		String st = fr.asString();
+		st = st.replace('\n', ' ');
+		MarkovFour markov = new MarkovFour();
+		markov.setRandom(371);
+		markov.setTraining(st);
+		for(int k=0; k < 3; k++){
+			String text = markov.getRandomText(151);
+			printOut(text);
 		}
-		System.out.println("\n----------------------------------");
 	}
 	
+    
+    private void printOut(String s){
+        String[] words = s.split("\\s+");
+        int psize = 0;
+        System.out.println("----------------------------------");
+        for(int k=0; k < words.length; k++){
+            System.out.print(words[k]+ " ");
+            psize += words[k].length() + 1;
+            if (psize > 60) {
+                System.out.println();
+                psize = 0;
+            }
+        }
+        System.out.println("\n----------------------------------");
+    }
+    
 }
